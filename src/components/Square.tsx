@@ -1,8 +1,8 @@
-import { ReactElement, ReactNode } from 'react';
+import {ReactElement, ReactNode} from 'react';
 
 interface SquareProps {
-  black: boolean,
-  children: ReactNode,
+  black: boolean;
+  children: ReactNode;
 }
 
 export default function Square({black, children}: SquareProps): ReactElement {
@@ -10,17 +10,17 @@ export default function Square({black, children}: SquareProps): ReactElement {
   const stroke = black ? 'white' : 'black';
 
   return (
-    <div 
+    <div
       style={{
         backgroundColor: fill,
         color: stroke,
         width: '100%',
         height: '100%',
         margin: 0,
-        padding: 0
+        padding: 0,
       }}
     >
       {children}
     </div>
-  )
+  );
 }

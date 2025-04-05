@@ -1,12 +1,16 @@
 import Square from './Square';
 import Knight from './Knight';
 import { ReactElement } from 'react';
+import type {Game} from './Game';
 
-interface BoardProps {
-  knightPosition: [number, number]
+export interface BoardProps {
+  knightPosition: [number, number];
 }
 
-function renderSquare(i, [knightX, knightY]) {
+function renderSquare(
+  i: number,
+  [knightX, knightY]: BoardProps['knightPosition']
+) {
   const x = i % 8;
   const y = Math.floor(i / 8);
   const isKnightHere = x === knightX && y === knightY;
@@ -20,14 +24,16 @@ function renderSquare(i, [knightX, knightY]) {
   );
 }
 
-export default function Board({knightPosition}: BoardProps):ReactElement {
+export default function Board({game}: {game: Game}): ReactElement {
+  console.log('🚀 | Board | game:', game);
   const squares = [];
   for (let i = 0; i < 64; i++) {
-    squares.push(renderSquare(i, knightPosition));
+    squares.push(renderSquare(i, game.knightPosition));
   }
 
   return (
     <div
+      id='Board'
       style={{
         width: '100%',
         height: '100%',

@@ -1,7 +1,7 @@
 import Square from './Square';
 import Knight from './Knight';
-import { ReactElement } from 'react';
-import type {Game} from './Game';
+import { ReactElement, useEffect, useState } from 'react';
+import type {Game, Position} from './Game';
 
 export interface BoardProps {
   knightPosition: [number, number];
@@ -9,7 +9,8 @@ export interface BoardProps {
 
 function renderSquare(
   i: number,
-  [knightX, knightY]: BoardProps['knightPosition']
+  [knightX, knightY]: BoardProps['knightPosition'],
+  handleClick
 ) {
   const x = i % 8;
   const y = Math.floor(i / 8);
@@ -18,17 +19,30 @@ function renderSquare(
   const piece = isKnightHere ? <Knight /> : null;
 
   return (
-    <div key={i} style={{width: '12.5%', height: '12.5%'}}>
+    <div
+      id='renderSquare'
+      key={i}
+      style={{width: '12.5%', height: '12.5%'}}
+      onClick={() => handleClick([x, y])}
+    >
       <Square black={black}>{piece}</Square>
     </div>
   );
 }
 
 export default function Board({game}: {game: Game}): ReactElement {
-  console.log('🚀 | Board | game:', game);
+  const [[knightX, knightY], setKnightPos] = useState(game.knightPosition);
+  
+  useEffect(() => game.observe(setKnightPos), []);
+  
+  function handleClick(pos: BoardProps['knightPosition']) {  
+    game.moveKnight(pos[0], pos[1]);
+    game.emitChange();
+  }
+
   const squares = [];
   for (let i = 0; i < 64; i++) {
-    squares.push(renderSquare(i, game.knightPosition));
+    squares.push(renderSquare(i, [knightX, knightY], handleClick));
   }
 
   return (

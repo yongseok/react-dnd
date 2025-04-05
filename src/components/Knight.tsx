@@ -1,4 +1,8 @@
+import { useDrag } from 'react-dnd';
 
 export default function Knight() {
-  return <span>♘</span>;
+  // const [collected, drag, dragPreview] = useDrag(() => ({
+  //   type
+  // }))
+  return <span id='Knight'>♘</span>;
 }

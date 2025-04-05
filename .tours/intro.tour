@@ -1,0 +1,21 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "intro",
+  "steps": [
+    {
+      "file": "src/App.tsx",
+      "description": "Example 진입점",
+      "line": 10
+    },
+    {
+      "file": "src/TutorialApp.tsx",
+      "description": "",
+      "line": 6
+    },
+    {
+      "file": "src/components/Board.tsx",
+      "description": "",
+      "line": 27
+    }
+  ]
+}

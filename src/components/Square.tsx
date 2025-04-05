@@ -11,6 +11,7 @@ export default function Square({black, children}: SquareProps): ReactElement {
 
   return (
     <div
+      id='Square'
       style={{
         backgroundColor: fill,
         color: stroke,

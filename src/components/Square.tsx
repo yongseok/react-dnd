@@ -1,4 +1,6 @@
-import {ReactElement, ReactNode} from 'react';
+import { ReactElement, ReactNode} from 'react';
+import { useDrop } from 'react-dnd';
+import type {Game} from './Game';
 
 interface SquareProps {
   black: boolean;
@@ -6,15 +8,16 @@ interface SquareProps {
 }
 
 export default function Square({black, children}: SquareProps): ReactElement {
-  const fill = black ? 'black' : 'white';
-  const stroke = black ? 'white' : 'black';
+  
+  const backgroundColor = black ? 'black' : 'white';
+  const color = black ? 'white' : 'black';
 
   return (
     <div
       id='Square'
       style={{
-        backgroundColor: fill,
-        color: stroke,
+        backgroundColor,
+        color,
         width: '100%',
         height: '100%',
         margin: 0,

@@ -2,7 +2,7 @@ export type Position = [number, number];
 export type PositionObserver = ((position: Position) => void) | null;
 
 export class Game {
-  public knightPosition: Position = [2, 1];
+  public knightPosition: Position = [0, 0];
   private observers: PositionObserver[] = [];
 
   public observe(o: PositionObserver): () => void {
@@ -21,6 +21,7 @@ export class Game {
 
   public moveKnight(toX: number, toY: number): void {
     this.knightPosition = [toX, toY];
+    this.emitChange();
   }
 
   public canMoveKnight(toX: number, toY: number) {
